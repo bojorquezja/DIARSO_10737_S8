@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Formulario con Bootstrap 5 y JavaScript</title>
+<!-- Importar Bootstrap -->
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>Formulario con Bootstrap 5 y JavaScript</h1>
+<form id="myForm">
+<div class="mb-3">
+<label for="nombre" class="form-label">Nombre:</label>
+<input type="text" class="form-control" id="nombre" 
+name="nombre" required>
+</div>
+<div class="mb-3">
+<label for="email" class="form-label">Email:</label>
+<input type="email" class="form-control" id="email" 
+name="email" required>
+</div>
+<div class="mb-3">
+<label for="edad" class="form-label">Edad:</label>
+<input type="number" class="form-control" id="edad" 
+name="edad" required>
+</div>
+<button type="submit" class="btn btn-outline-danger">Enviar</button>
+</form>
+<table class="table mt-4">
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Email</th>
+<th>Edad</th>
+</tr>
+</thead>
+<tbody id="dataTable">
+</tbody>
+</table>
+</div>
+<!-- Importar jQuery y Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
+integrity="sha384-
+cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
+crossorigin="anonymous"></script>
+ <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-
+eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+ 
+<script>
+$(document).ready(function() {
+$('#myForm').on('submit', function(e) {
+e.preventDefault();
+var nombre = $('#nombre').val();
+var email = $('#email').val();
+var edad = $('#edad').val();
+$('#dataTable').append('<tr><td>'+nombre+'</td><td>'+email+'</td><td>'+edad+'</td></tr>');
+ // Limpia el formulario
+$('#myForm')[0].reset();
+});
+});
+</script>
+</body>

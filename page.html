@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Formulario con Bootstrap 5 y JavaScript</title>
+<!-- Importar Bootstrap -->
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>Formulario con Bootstrap 5 y JavaScript</h1>
+<form id="myForm">
+<div class="mb-3">
+<label for="nombre" class="form-label">Nombre:</label>
+<input type="text" class="form-control" id="nombre" 
+name="nombre" required>
+</div>
+<div class="mb-3">
+<label for="email" class="form-label">Email:</label>
+<input type="email" class="form-control" id="email" 
+name="email" required>
+</div>
+<div class="mb-3">
+<label for="edad" class="form-label">Edad:</label>
+<input type="number" class="form-control" id="edad" 
+name="edad" required>
+</div>
+<div class="mb-3">
+<label for="genero" class="form-label">Género:</label>
+<select class="form-select" id="genero" name="genero" 
+required>
+<option value="">Selecciona una opción</option>
+<option value="Masculino">Masculino</option>
+<option value="Femenino">Femenino</option>
+<option value="Otro">Otro</option>
+</select>
+</div>
+<div class="mb-3">
+<label for="intereses" class="form-label">Intereses:</label>
+<div>
+<input type="checkbox" id="interes1" 
+name="intereses[]" value="Deportes">
+<label for="interes1">Deportes</label>
+</div>
+<div>
+<input type="checkbox" id="interes2" 
+name="intereses[]" value="Cine">
+<label for="interes2">Cine</label>
+</div>
+<div>
+<input type="checkbox" id="interes3" 
+name="intereses[]" value="Música">
+<label for="interes3">Música</label>
+</div>
+</div>
+<button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+<table class="table mt-4">
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Email</th>
+<th>Edad</th>
+<th>Género</th>
+<th>Intereses</th>
+</tr>
+</thead>
+<tbody id="dataTable">
+</tbody>
+</table>
+</div>
+<!-- Importar jQuery y Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+ <script>
+ $(document).ready(function(){
+ $('#myForm').on('submit', function(e) {
+ e.preventDefault();
+ 
+ // Obtener los valores del formulario
+ var nombre = $('#nombre').val();
+ var email = $('#email').val();
+ var edad = $('#edad').val();
+ var genero = $('#genero').val();
+ var intereses = $('input[name="intereses[]"]:checked').map(function() {
+ return $(this).val();
+ }).get().join(', ');
+ 
+ // Crear una nueva fila de la tabla con los valores del formulario
+ var newRow = $('<tr>');
+ newRow.append($('<td>').text(nombre));
+ newRow.append($('<td>').text(email));
+ newRow.append($('<td>').text(edad));
+ newRow.append($('<td>').text(genero));
+ newRow.append($('<td>').text(intereses));
+ 
+ // Agregar la nueva fila a la tabla
+ $('#dataTable').append(newRow);
+ 
+ // Limpiar el formulario
+ $('#myForm')[0].reset();
+ });
+ });
+ </script>
